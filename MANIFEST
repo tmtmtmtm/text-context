@@ -1,0 +1,10 @@
+Changes
+lib/Text/Context.pm
+lib/Text/Context/Para.pm
+MANIFEST
+Makefile.PL
+t/1.t
+t/2.t
+t/3.t
+t/4.t
+META.yml                                 Module meta-data (added by MakeMaker)
