@@ -1,5 +1,15 @@
 package Text::Context::Para;
 
+=head1 NAME
+
+Text::Context::Para - A paragraph in context
+
+=head1 DESCRIPTION
+
+This is a paragraph being used by Text::Context.
+
+=cut
+
 use strict;
 use warnings;
 
@@ -8,6 +18,14 @@ use Text::Context::EitherSide qw(get_context);
 
 use constant DEFAULT_START_TAG => '<span class="quoted">';
 use constant DEFAULT_END_TAG   => "</span>";
+
+=head1 CONSTRUCTOR
+
+=head2 new
+
+	my $para = Text::Context::Para->new($content, $order);
+
+=cut
 
 sub new {
 	my ($class, $content, $order) = @_;
@@ -19,6 +37,18 @@ sub new {
 		order        => $order
 	}, $class;
 }
+
+=head1 METHODS
+
+=head2 best_keywords / slim 
+
+=head2 as_text / marked_up
+
+You can override DEFAULT_START_TAG and DEFAULT_END_TAG. These default to
+<span class="quoted"> and </span>
+
+=cut
+
 
 sub best_keywords {
 	my $self = shift;

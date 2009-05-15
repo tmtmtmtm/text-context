@@ -5,7 +5,7 @@ use warnings;
 
 use UNIVERSAL::require;
 
-our $VERSION = "3.5";
+our $VERSION = "3.6";
 
 =head1 NAME
 
@@ -56,15 +56,19 @@ sub keywords {
 	return @{ $self->{keywords} };
 }
 
-=begin maintainance
+=begin maintenance
 
 =head2 prepare_text
 
-Turns the text into a set of Text::Context::Para objects, collapsing
-multiple spaces in the text and feeding the paragraphs, in order, onto
-the C<text_a> member.
+Turns the text into a set of Paragraph objects, collapsing multiple
+spaces in the text and feeding the paragraphs, in order, onto the
+C<text_a> member.
 
-=end
+=head2 para_class
+
+The Paragraph class to use. This defaults to 'Text::Context::Para'
+
+=end maintenance
 
 =cut
 
@@ -81,7 +85,9 @@ sub prepare_text {
 	}
 }
 
-=begin maintainance
+=begin maintenance
+
+=head2 permute_keywords
 
 This is very clever. To determine which keywords "apply" to a given
 paragraph, we first produce a set of all possible keyword sets. For
@@ -98,7 +104,7 @@ instance, given "a", "b" and "c", we want to produce
 We do this by counting in binary, and then mapping the counts onto
 keywords.
 
-=end
+=end maintenance
 
 =cut
 
@@ -116,7 +122,9 @@ sub permute_keywords {
 	return reverse @permutation;
 }
 
-=for maintainance
+=begin maintenance
+
+=head2 score_para / get_appropriate_paras
 
 Now we want to find a "score" for this paragraph, finding the best set
 of keywords which "apply" to it. We favour keyword sets which have a
@@ -124,6 +132,8 @@ large number of matches (obviously a paragraph is better if it matches
 "a" and "c" than if it just matches "a") and with multi-word keywords.
 (A paragraph which matches "fresh cheese sandwiches" en bloc is worth
 picking out, even if it has no other matches.)
+
+=end maintenance
 
 =cut
 
@@ -243,12 +253,17 @@ Current maintainer: Tony Bowden
 Please direct all correspondence regarding this module to:
   bug-Text-Context@rt.cpan.org
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-  Copyright (C) 2002-2004 Kasei Limited
+  Copyright (C) 2002-2005 Kasei
 
-You may use and redistribute this module under the terms of the Artistic
-License.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License; either version
+  2 of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 =cut
 
